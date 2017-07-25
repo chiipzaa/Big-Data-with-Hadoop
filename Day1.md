@@ -207,5 +207,6 @@ $ start-all.sh
 $ jps
 ```
 
-หากติดตั้งเสร็จสิ้น จะได้ service ทำงาน 6 ตัว ได้แก่ DataNode, NodeManager, NameNode, SecondaryNameNode, ResourceManager, Jps
+> หากติดตั้งเสร็จสิ้น จะได้ service ทำงาน 6 ตัว ได้แก่ DataNode, NodeManager, NameNode, SecondaryNameNode, ResourceManager, Jps
+
 ![service hadoop](/images/day1-1.png)
