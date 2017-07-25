@@ -54,3 +54,29 @@ $ tar –xvf hadoop-2.7.3.tar.gz
 $ sudo mv ./hadoop-2.7.3 /usr/local/hadoop
 ```
 
+#### 5. ทำการให้สิทธิแก่ folder
+```
+$ sudo chown –R user01:user01 /usr/local/hadoop
+```
+
+#### 6.สร้าง folder เก็บ log file, data และให้สิทธิแก่ folder
+```
+$ sudo mkdir /var/log/hadoop
+$ sudo chown –R user01:user01 /var/log/hadoop
+$ sudo mkdir -p /var/hadoop_data
+$ sudo mkdir -p /var/hadoop_data/namenode
+$ sudo mkdir -p /var/hadoop_data/datanode
+$ sudo chown –R user01:user01 /var/hadoop_data
+```
+
+#### 7.แก้ไข .bashrc ด้วย gedit หรือ nano
+```
+$ gedit .bashrc
+```
+เพิ่มเข้าไปในไฟล์
+```
+export HADOOP_HOME=/usr/local/hadoop
+export PATH=$PATH:$HADOOP_HOME/bin
+export PATH=$PATH:$HADOOP_HOME/sbin
+```
+
