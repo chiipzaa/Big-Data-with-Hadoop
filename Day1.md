@@ -36,7 +36,9 @@ Download: Ubuntu.zip, VirtualBox-5.1.22-115126-Win.exe
 $ nano .bashrc
 ```
 เพิ่มเข้าไปในไฟล์
->export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
->export PATH=$PATH:$JAVA_HOME/bin
+```
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export PATH=$PATH:$JAVA_HOME/bin
+```
 
 
