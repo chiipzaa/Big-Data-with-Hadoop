@@ -11,3 +11,32 @@ Download: Ubuntu.zip, VirtualBox-5.1.22-115126-Win.exe
 1.	Install VirtualBox and Unzip Ubuntu.zip
 2.	Create VM with VirtualBox select type: Linux (64bits) mem=>4gb Using Exit HDD from download
 >Tip: Exit Full Screen VirtualBox (Right CTRL + F)
+
+#### Big data Definition
+- Volume
+- Varity
+- Velocity
+- Veracity
+
+
+## Installation
+
+>In VM Ubuntu: user: user01 password: password
+#### steb by step
+
+1. ติดตั้ง java
+```
+ $ sudo apt-get install openjdk-8-jdk
+```
+> การตรวจสอบว่ามี java แล้วหรือยังด้วย
+> $ java -version
+
+2. เพิ่ม PATH ของ java ลงใน .bashrc
+```
+$ nano .bashrc
+```
+เพิ่มเข้าไปในไฟล์
+>export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+>export PATH=$PATH:$JAVA_HOME/bin
+
+
