@@ -80,3 +80,24 @@ export PATH=$PATH:$HADOOP_HOME/bin
 export PATH=$PATH:$HADOOP_HOME/sbin
 ```
 
+#### 8.เข้าไปยัง directory ของ Hadoop เพื่อแก้ไขค่าไฟล์ต่าง ๆ ได้แก่ hadoop-env.sh, yarn-env.sh, core-site.xml, hdfs-site.xml, yarn-site.xml, mapred-site.xml
+```
+$ cd /usr/local/hadoop/etc/hadoop
+```
+- hadoop-env.sh
+```
+$ nano hadoop-env.sh
+```
+เพิ่ม JAVA_HOME and log directory
+```
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export HADOOP_LOG_DIR=/var/log/Hadoop
+```
+- yarn-env.sh
+```
+$ nano yarn-env.sh
+```
+เพิ่ม log directory
+```
+export YARN_LOG_DIR=/var/log/Hadoop
+```
