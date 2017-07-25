@@ -42,7 +42,8 @@ export PATH=$PATH:$JAVA_HOME/bin
 ```
 
 #### 3. Download Hadoop
-source : http://hadoop.apache.org/releases.html
+* source : http://hadoop.apache.org/releases.html
+
 ณ ตอนที่ทำใช้ version 2.7.3
 แตก zip ไฟล์ที่ download มาด้วย
 ```
