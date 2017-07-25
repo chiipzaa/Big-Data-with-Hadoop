@@ -84,6 +84,7 @@ export PATH=$PATH:$HADOOP_HOME/sbin
 ```
 $ cd /usr/local/hadoop/etc/hadoop
 ```
+
 - hadoop-env.sh
 ```
 $ nano hadoop-env.sh
@@ -91,13 +92,28 @@ $ nano hadoop-env.sh
 เพิ่ม JAVA_HOME and log directory
 ```
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-export HADOOP_LOG_DIR=/var/log/Hadoop
+export HADOOP_LOG_DIR=/var/log/hadoop
 ```
+
 - yarn-env.sh
 ```
 $ nano yarn-env.sh
 ```
 เพิ่ม log directory
 ```
-export YARN_LOG_DIR=/var/log/Hadoop
+export YARN_LOG_DIR=/var/log/hadoop
+```
+
+- core-site.xml
+```
+$ nano core-site.xml
+```
+configuration IP address และ  port 9000 ภายใน tag 
+```
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://10.0.2.15:9000</value>
+    </property>
+</configuration>
 ```
