@@ -210,3 +210,30 @@ $ jps
 > หากติดตั้งเสร็จสิ้น จะได้ service ทำงาน 6 ตัว ได้แก่ DataNode, NodeManager, NameNode, SecondaryNameNode, ResourceManager, Jps
 
 ![service hadoop](/images/day1-1.png)
+
+## Debug
+> ถ้าหากพบปัญหา service ไม่ครบ ให้ตรวจสอบดังต่อไปนี้
+
+* Check $nano .bashrc
+* Check path ( cd /usr/local/hadoop/etc/hadoop ) 
+    * Check $nano hadoop-env.sh
+    * Check $nano yarn-env.sh
+    * Check $nano core-site.xml
+    * Check $nano hdfs-site.xml
+    * Check $nano yarn-site.xml
+    * Check $nano mapred-site.xml
+
+> ถ้าหากไม่พบ namenode
+```
+$ stop-all.sh
+$ kill -9 process_id ignore jps_process
+$ rm –rf /var/hadoop_data/namenode/*
+$ rm –rf /var/hadoop_data/datanode/*
+$ rm –rf /var/log/hadoop*
+$ rm –rf /tmp/hadoop*
+$ rm –rf /tmp/Jetty*
+$ hdfs namenode –format
+$ start-all.sh
+$ jps
+
+```
