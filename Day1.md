@@ -235,5 +235,4 @@ $ rm –rf /tmp/Jetty*
 $ hdfs namenode –format
 $ start-all.sh
 $ jps
-
 ```
