@@ -117,3 +117,95 @@ configuration IP address และ  port 9000 ภายใน tag
     </property>
 </configuration>
 ```
+
+- hdfs-site.xml
+```
+$ nano hdfs-site.xml
+```
+configuration ภายใน tag 
+```
+<configuration>
+  <property>
+    <name>dfs.replication</name>
+    <value>1</value>
+  </property>
+  <property>
+    <name>dfs.namenode.name.dir</name>
+    <value>file:/var/hadoop_data/namenode</value>
+  </property>
+  <property>
+    <name>dfs.datanode.data.dir</name>
+    <value>file:/var/hadoop_data/datanode</value>
+  </property>
+</configuration>
+```
+
+- yarn-site.xml
+```
+$ nano yarn-site.xml
+```
+configuration ภายใน tag 
+```
+<configuration>
+  <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>10.0.2.15</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.scheduler.address</name>
+    <value>10.0.2.15:8030</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.resource-tracker.address</name>
+    <value>10.0.2.15:8031</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.address</name>
+    <value>10.0.2.15:8032</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.admin.address</name>
+    <value>10.0.2.15:8033</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.webapp.address</name>
+    <value>10.0.2.15:8088</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+    <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+  </property>
+</configuration>
+```
+
+- mapred-site.xml
+```
+$ cp mapred-site.xml.template mapred-site.xml
+$ nano mapred-site.xml
+```
+configuration ภายใน tag 
+```
+<configuration>
+  <property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+  </property>
+</configuration>
+```
+#### 9. Format namenode
+```
+$ hdfs namenode –format
+```
+
+#### 10. start
+```
+$ start-all.sh
+$ jps
+```
+
+หากติดตั้งเสร็จสิ้น จะได้ service ทำงาน 6 ตัว ได้แก่ DataNode, NodeManager, NameNode, SecondaryNameNode, ResourceManager, Jps
+![service hadoop](/images/day1-1.png)
