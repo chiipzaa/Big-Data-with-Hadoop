@@ -1,13 +1,18 @@
 # Big data with Hadoop
 
-* Day 1-2: Apache Hadoop Ecosystem
-    * Apache Hadoop
+* Apache Hadoop Ecosystem
+    * [Apache Hadoop](install-Hadoop.md)
     * Mysql
     * Hive
     * Sqoop
     * Spark
     * flume
-* Day 3-4: R Programming with Big data
-    * RStudio
-    * binaries for R
+* R Programming with Big data
     * R Programming with RStudio
+ 
+* Other
+    * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+
+
+
+
