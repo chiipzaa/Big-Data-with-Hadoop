@@ -10,3 +10,4 @@
 * Day 3-4: R Programming with Big data
     * RStudio
     * binaries for R
+    * R Programming with RStudio
