@@ -5,7 +5,7 @@
     * [MySql](install-mysql.md)
     * Hive
     * [Sqoop](install-sqoop.md)
-    * Spark
+    * [Spark](install-spark.md)
     * flume
 * R Programming with Big data
     * R Programming with RStudio
