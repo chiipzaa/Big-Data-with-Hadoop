@@ -1,10 +1,10 @@
 # Big data with Hadoop
 
 * Apache Hadoop Ecosystem
-    * [Apache Hadoop](Install-Hadoop.md)
-    * Mysql
+    * [Apache Hadoop](install-hadoop.md)
+    * [MySql](install-mysql.md)
     * Hive
-    * Sqoop
+    * [Sqoop](install-sqoop.md)
     * Spark
     * flume
 * R Programming with Big data

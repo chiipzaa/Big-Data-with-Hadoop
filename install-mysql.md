@@ -5,7 +5,7 @@ $ sudo apt-get update
 $ sudo apt-get install mysql-server
 ```
 
-> ตั้งค่า root password: password
+> Tip: ตั้งค่า root password: password (ตามใจ)
 
 ทดสอบ
 ```
