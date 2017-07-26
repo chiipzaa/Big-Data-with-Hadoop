@@ -1,7 +1,7 @@
 # Big data with Hadoop
 
 * Apache Hadoop Ecosystem
-    * [Apache Hadoop](install-Hadoop.md)
+    * [Apache Hadoop](Install-Hadoop.md)
     * Mysql
     * Hive
     * Sqoop
