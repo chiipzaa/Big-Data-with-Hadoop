@@ -1,4 +1,4 @@
-# การเขียน function
+# การเขียน และ การเรียก function
 
 ``` r
 # Create a sequence of numbers from 32 to 44.
