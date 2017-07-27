@@ -1,5 +1,3 @@
-# Lab ฝึกการวิเคราะห์ข้อมูล
-
 -   Import data file from csv file
 
 ``` r
@@ -399,3 +397,159 @@ summary(birthwt.lm2)
 ``` r
 # qplot(data = birthwt,x=mother.age,y=birthwt.grams,colour=mother.smokes)+stat_smooth(method = "lm",fullrange = TRUE)
 ```
+
+### example predic data model
+
+``` r
+library(rpart)
+
+cols_birthwt <- c('birthwt.below.2500','race','mother.smokes','hypertension','uterine.irr')
+cols_birthwt
+```
+
+    ## [1] "birthwt.below.2500" "race"               "mother.smokes"     
+    ## [4] "hypertension"       "uterine.irr"
+
+``` r
+birthwt[cols_birthwt] <- lapply(birthwt[cols_birthwt],as.factor)
+
+set.seed(1)
+train <- sample(1:nrow(birthwt),0.75*nrow(birthwt))
+
+birthwtTree <- rpart(birthwt.below.2500 ~ . - birthwt.grams, data = birthwt[train,],method = 'class')
+plot(birthwtTree)
+text(birthwtTree,pretty=0)
+```
+
+![](lab-5_files/figure-markdown_github/unnamed-chunk-16-1.png)
+
+``` r
+summary(birthwtTree)
+```
+
+    ## Call:
+    ## rpart(formula = birthwt.below.2500 ~ . - birthwt.grams, data = birthwt[train, 
+    ##     ], method = "class")
+    ##   n= 141 
+    ## 
+    ##           CP nsplit rel error   xerror      xstd
+    ## 1 0.09090909      0 1.0000000 1.000000 0.1250403
+    ## 2 0.06818182      1 0.9090909 1.272727 0.1320509
+    ## 3 0.05681818      2 0.8409091 1.181818 0.1302070
+    ## 4 0.02272727      4 0.7272727 1.159091 0.1296714
+    ## 5 0.01000000      5 0.7045455 1.295455 0.1324387
+    ## 
+    ## Variable importance
+    ## previous.prem.labor       mother.weight          mother.age 
+    ##                  28                  27                  21 
+    ##        hypertension                race       mother.smokes 
+    ##                  13                   4                   2 
+    ##   phys.visit.binned    physician.visits 
+    ##                   2                   2 
+    ## 
+    ## Node number 1: 141 observations,    complexity param=0.09090909
+    ##   predicted class=0  expected loss=0.3120567  P(node) =1
+    ##     class counts:    97    44
+    ##    probabilities: 0.688 0.312 
+    ##   left son=2 (117 obs) right son=3 (24 obs)
+    ##   Primary splits:
+    ##       previous.prem.labor < 0.5   to the left,  improve=4.256956, (0 missing)
+    ##       mother.weight       < 106   to the right, improve=3.309682, (0 missing)
+    ##       mother.smokes       splits as  LR,        improve=2.786787, (0 missing)
+    ##       uterine.irr         splits as  LR,        improve=2.212817, (0 missing)
+    ##       hypertension        splits as  LR,        improve=1.784809, (0 missing)
+    ## 
+    ## Node number 2: 117 observations,    complexity param=0.05681818
+    ##   predicted class=0  expected loss=0.2564103  P(node) =0.8297872
+    ##     class counts:    87    30
+    ##    probabilities: 0.744 0.256 
+    ##   left son=4 (93 obs) right son=5 (24 obs)
+    ##   Primary splits:
+    ##       mother.weight < 106   to the right, improve=2.462159, (0 missing)
+    ##       mother.smokes splits as  LR,        improve=1.512047, (0 missing)
+    ##       race          splits as  RRL,       improve=1.475455, (0 missing)
+    ##       uterine.irr   splits as  LR,        improve=1.230769, (0 missing)
+    ##       hypertension  splits as  LR,        improve=1.019054, (0 missing)
+    ## 
+    ## Node number 3: 24 observations,    complexity param=0.06818182
+    ##   predicted class=1  expected loss=0.4166667  P(node) =0.1702128
+    ##     class counts:    10    14
+    ##    probabilities: 0.417 0.583 
+    ##   left son=6 (7 obs) right son=7 (17 obs)
+    ##   Primary splits:
+    ##       mother.weight     < 131.5 to the right, improve=1.7507000, (0 missing)
+    ##       physician.visits  < 0.5   to the right, improve=0.8414918, (0 missing)
+    ##       phys.visit.binned splits as  RLLL,      improve=0.8414918, (0 missing)
+    ##       mother.age        < 23    to the right, improve=0.6666667, (0 missing)
+    ##       mother.smokes     splits as  LR,        improve=0.2380952, (0 missing)
+    ##   Surrogate splits:
+    ##       mother.age < 31.5  to the right, agree=0.75, adj=0.143, (0 split)
+    ## 
+    ## Node number 4: 93 observations,    complexity param=0.02272727
+    ##   predicted class=0  expected loss=0.2043011  P(node) =0.6595745
+    ##     class counts:    74    19
+    ##    probabilities: 0.796 0.204 
+    ##   left son=8 (86 obs) right son=9 (7 obs)
+    ##   Primary splits:
+    ##       hypertension  splits as  LR,        improve=2.0405460, (0 missing)
+    ##       mother.age    < 21.5  to the right, improve=1.2856160, (0 missing)
+    ##       uterine.irr   splits as  LR,        improve=1.1492580, (0 missing)
+    ##       mother.smokes splits as  LR,        improve=0.8111623, (0 missing)
+    ##       race          splits as  RLL,       improve=0.7700130, (0 missing)
+    ## 
+    ## Node number 5: 24 observations,    complexity param=0.05681818
+    ##   predicted class=0  expected loss=0.4583333  P(node) =0.1702128
+    ##     class counts:    13    11
+    ##    probabilities: 0.542 0.458 
+    ##   left son=10 (15 obs) right son=11 (9 obs)
+    ##   Primary splits:
+    ##       mother.age       < 22.5  to the left,  improve=2.93888900, (0 missing)
+    ##       mother.smokes    splits as  LR,        improve=0.30827510, (0 missing)
+    ##       race             splits as  RRL,       improve=0.16666670, (0 missing)
+    ##       physician.visits < 0.5   to the right, improve=0.16666670, (0 missing)
+    ##       mother.weight    < 97    to the right, improve=0.08333333, (0 missing)
+    ##   Surrogate splits:
+    ##       race              splits as  LLR,       agree=0.708, adj=0.222, (0 split)
+    ##       mother.smokes     splits as  LR,        agree=0.667, adj=0.111, (0 split)
+    ##       physician.visits  < 1.5   to the left,  agree=0.667, adj=0.111, (0 split)
+    ##       phys.visit.binned splits as  LLRL,      agree=0.667, adj=0.111, (0 split)
+    ## 
+    ## Node number 6: 7 observations
+    ##   predicted class=0  expected loss=0.2857143  P(node) =0.04964539
+    ##     class counts:     5     2
+    ##    probabilities: 0.714 0.286 
+    ## 
+    ## Node number 7: 17 observations
+    ##   predicted class=1  expected loss=0.2941176  P(node) =0.1205674
+    ##     class counts:     5    12
+    ##    probabilities: 0.294 0.706 
+    ## 
+    ## Node number 8: 86 observations
+    ##   predicted class=0  expected loss=0.1744186  P(node) =0.6099291
+    ##     class counts:    71    15
+    ##    probabilities: 0.826 0.174 
+    ## 
+    ## Node number 9: 7 observations
+    ##   predicted class=1  expected loss=0.4285714  P(node) =0.04964539
+    ##     class counts:     3     4
+    ##    probabilities: 0.429 0.571 
+    ## 
+    ## Node number 10: 15 observations
+    ##   predicted class=0  expected loss=0.2666667  P(node) =0.106383
+    ##     class counts:    11     4
+    ##    probabilities: 0.733 0.267 
+    ## 
+    ## Node number 11: 9 observations
+    ##   predicted class=1  expected loss=0.2222222  P(node) =0.06382979
+    ##     class counts:     2     7
+    ##    probabilities: 0.222 0.778
+
+``` r
+birthwtPred <- predict(birthwtTree, birthwt[-train,],type='class')
+table(birthwtPred, birthwt[-train,]$birthwt.below.2500)
+```
+
+    ##            
+    ## birthwtPred  0  1
+    ##           0 31 10
+    ##           1  2  5
